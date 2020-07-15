@@ -4,6 +4,7 @@ const db = require('../db')
 
 module.exports.index = (req, res) => {
     res.render('users/index', {
+        
         users: db.get('users').value()
     })
 }
@@ -33,20 +34,7 @@ module.exports.view = (req, res) => {
 }
 
 module.exports.postCreate = (req, res) => {
-    req.body.id = shortid.generate();
-    let errors = []
-    if(!req.body.name){
-        errors.push('Name is require.')
-    }
-    if(!req.body.phone){
-        errors.push('Phone is require.')
-    }
-    if(errors.length){
-        res.render('users/create', {
-            errors: errors,
-            values: req.body
-        })
-    }
+    req.body.id = shortid.generate()
     db.get('users').push(req.body).write()
     res.redirect('/users')
 }
