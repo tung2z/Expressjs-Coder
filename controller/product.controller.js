@@ -17,7 +17,7 @@ module.exports.index = (req, res) => {
 }
 
 module.exports.searchProducts = (req, res) => {
-    let q = req.query.q
+    let q = req.query.q 
     let matchedProducts = db.get('products').value().filter((product) => {
         return product.name.toLowerCase().indexOf(q.toLowerCase()) !== -1
     })

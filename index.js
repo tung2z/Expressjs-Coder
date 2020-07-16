@@ -5,8 +5,10 @@ const cookieParser = require('cookie-parser')
 const userRoute = require('./route/user.route')
 const authRoute = require('./route/auth.route')
 const productRoute = require('./route/product.route')
+const cartRoute = require('./route/cart.route')
 
 const authMiddleware = require('./middleware/auth.middleware')
+const sessionMiddleware = require('./middleware/session.middleware')
 
 const port = 3000
 
@@ -20,6 +22,8 @@ app.use(cookieParser('rwerqewrrerq')) //signed Cookie
 
 app.use(express.static('public')) // enable static file, static path
 
+app.use(sessionMiddleware)
+
 app.get('/', (req, res) => {
     res.render('index', {
         name: 'Tung'
@@ -29,5 +33,6 @@ app.get('/', (req, res) => {
 app.use('/users', authMiddleware.requireAuth, userRoute)
 app.use('/auth', authRoute)
 app.use('/products', productRoute)
+app.use('/cart', cartRoute)
 
 app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))

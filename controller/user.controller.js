@@ -35,6 +35,8 @@ module.exports.view = (req, res) => {
 
 module.exports.postCreate = (req, res) => {
     req.body.id = shortid.generate()
+    req.body.avatar = req.file.path.slice(8) //chuoi req.file.path la publics/uploads/661c719c7491e69be32e8a8c4a0ea251. slice(8) de cat chu publics di. moi mo? file duoc
+    console.log(req.body.avatar)
     db.get('users').push(req.body).write()
     res.redirect('/users')
 }
