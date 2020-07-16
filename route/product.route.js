@@ -7,4 +7,5 @@ const router = express.Router()
 
 router.get('/', controller.index)
 
+router.get('/search', controller.searchProducts)
 module.exports = router

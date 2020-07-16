@@ -28,6 +28,6 @@ app.get('/', (req, res) => {
 
 app.use('/users', authMiddleware.requireAuth, userRoute)
 app.use('/auth', authRoute)
-app.use('/product', productRoute)
+app.use('/products', productRoute)
 
 app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))

@@ -3,7 +3,7 @@ extends ../layout/common
 block content
     h1 Product
     .d-flex.align-items-center
-        form.ml-auto.d-flex(action="/users/search" method="GET")
+        form.ml-auto.d-flex(action="/products/search" method="GET")
             input.form-control(type="text" name="q" value=q) 
             button.btn.btn-primary Search
     .row
@@ -15,5 +15,21 @@ block content
                         h5.card-title= product.name
                         p.card-text= product.description
                         a.btn.btn-primary(href='#') Add to card
+    form.ml-auto.d-flex(method="GET")
+        nav()
+        ul.pagination
+            //- li.page-item.disabled
+            //-     a.page-link(href='#', tabindex='-1') Previous
+            - var numOfPages = numOfPage || 0
+            - var numOfPages1 = numOfPage1 || 0
+            while n <= numOfPages
+                li.page-item
+                    a.page-link(href='/products?page=' + n)= n++
+            while n <= numOfPages1
+                li.page-item
+                    a.page-link(href='/products/search?q=' + q + '&&page=' + n)= n++
+            //- li.page-item
+            //-     a.page-link(href='#') Next
+
 
     
